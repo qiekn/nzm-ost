@@ -1,4 +1,5 @@
 import type { Chapter } from "../data/types";
+import { asset } from "../utils/asset";
 
 function ChapterNav({
   chapters,
@@ -39,7 +40,7 @@ function ChapterNav({
             {/* 地图缩略图 */}
             <div className="w-0 group-hover/nav:w-70 h-full shrink-0 overflow-hidden transition-[width] duration-300 ease-in-out">
               <img
-                src={chapter.navImage}
+                src={asset(chapter.navImage)}
                 alt={chapter.name}
                 className="w-70 h-full object-cover object-center block"
               />

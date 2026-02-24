@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { PlayMode, Track, TrackSource } from "../data/types";
+import { asset } from "../utils/asset";
 
 const VOLUME_KEY = "nzm-ost-volume";
 const PLAY_MODE_KEY = "nzm-ost-play-mode";
@@ -132,7 +133,7 @@ export function useAudioPlayer(): [AudioPlayerState, AudioPlayerActions] {
       const audios = source.layers.map((url) => {
         const a = new Audio();
         a.preload = "auto";
-        a.src = url;
+        a.src = asset(url);
         a.volume = vol;
         return a;
       });
@@ -229,7 +230,7 @@ export function useAudioPlayer(): [AudioPlayerState, AudioPlayerActions] {
       const step = 16; // ~60fps interval
 
       fadingRef.current = true;
-      audio.src = source.url;
+      audio.src = asset(source.url);
       audio.volume = 0;
       audio.play().catch(() => {});
       startLayers(source, 0);
@@ -367,7 +368,7 @@ export function useAudioPlayer(): [AudioPlayerState, AudioPlayerActions] {
         const targetVolume = volumeRef.current;
         const step = 16;
 
-        audio.src = source.url;
+        audio.src = asset(source.url);
         audio.volume = 0;
         audio.play().catch(() => {});
         startLayers(source, 0);

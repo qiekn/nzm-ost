@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { kunlunData } from "./data/kunlun";
 import { useAudioPlayer } from "./hooks/useAudioPlayer";
 import { LangProvider } from "./i18n/context";
+import { asset } from "./utils/asset";
 import Header from "./components/Header";
 import ChapterNav from "./components/ChapterNav";
 import CoverArt from "./components/CoverArt";
@@ -55,7 +56,7 @@ function App() {
       {/* 背景：静态图 + 视频 */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-black">
         <img
-          src="/images/background_s0.jpg"
+          src={asset("/images/background_s0.jpg")}
           alt=""
           className={`absolute inset-0 w-full h-full object-cover opacity-80 transition-opacity duration-700 ${videoReady ? "opacity-0" : ""}`}
         />
@@ -68,7 +69,7 @@ function App() {
           onCanPlayThrough={handleVideoCanPlay}
           className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoReady ? (hideUI ? "opacity-100" : "opacity-80") : "opacity-0"}`}
         >
-          <source src="/videos/Background_S1.mp4" type="video/mp4" />
+          <source src={asset("/videos/Background_S1.mp4")} type="video/mp4" />
         </video>
         <div className={`absolute inset-0 bg-linear-to-r from-black/80 via-black/40 to-black/60 transition-opacity duration-500 ${hideUI ? "opacity-0" : ""}`} />
         <div className={`absolute inset-0 bg-linear-to-t from-black/90 via-transparent to-black/30 transition-opacity duration-500 ${hideUI ? "opacity-0 backdrop-blur-0" : "backdrop-blur-[2px]"}`} />

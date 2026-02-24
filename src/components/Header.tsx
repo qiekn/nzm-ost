@@ -1,4 +1,5 @@
 import { useLang } from "../i18n/context";
+import { asset } from "../utils/asset";
 
 function Header() {
   const { lang, setLang, t } = useLang();
@@ -7,7 +8,7 @@ function Header() {
     <header className="w-full px-6 py-4 flex justify-between items-center z-20 bg-linear-to-b from-black/60 to-transparent">
       <div className="flex items-center gap-4 min-w-0">
         <img
-          src="/images/logo/golden.png"
+          src={asset("/images/logo/golden.png")}
           alt={t("header.logoAlt")}
           className="h-8 shrink-0 drop-shadow-[0_0_10px_rgba(216,180,106,0.3)]"
         />

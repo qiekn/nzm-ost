@@ -1,5 +1,6 @@
 import type { Chapter } from "../data/types";
 import { useLang } from "../i18n/context";
+import { asset } from "../utils/asset";
 
 function CoverArt({ chapter }: { chapter: Chapter }) {
   const { lang } = useLang();
@@ -9,7 +10,7 @@ function CoverArt({ chapter }: { chapter: Chapter }) {
     <div className="hidden lg:flex w-[45%] h-full items-center justify-end relative">
       <div className="relative w-80 h-80 xl:w-100 xl:h-100 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden group border border-white/10">
         <img
-          src={chapter.cover}
+          src={asset(chapter.cover)}
           alt={displayName}
           className="absolute inset-0 w-full h-full object-cover opacity-80"
         />
@@ -18,7 +19,7 @@ function CoverArt({ chapter }: { chapter: Chapter }) {
         <div className="absolute inset-0 flex flex-col justify-between p-8">
           <div className="flex justify-between items-start">
             <img
-              src={chapter.titleImage}
+              src={asset(chapter.titleImage)}
               alt={displayName}
               className="h-6 opacity-60"
             />

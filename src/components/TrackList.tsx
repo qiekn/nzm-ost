@@ -5,16 +5,18 @@ import type {
   AudioPlayerState,
   AudioPlayerActions,
 } from "../hooks/useAudioPlayer";
+import { useLang } from "../i18n/context";
+import type { TranslationKey } from "../i18n/zh";
 
 // prettier-ignore
-const TAG_STYLES: Record< TrackTag, { label: string; bg: string; text: string } > = {
-  explore:   { label: "探索    ", bg: "bg-blue/10      ", text: "text-blue/60   " },
-  battle:    { label: "战斗    ", bg: "bg-orange-500/20", text: "text-orange-400" },
-  boss:      { label: "首领战  ", bg: "bg-red-500/30   ", text: "text-red-300   " },
-  mechanic:  { label: "场景机制", bg: "bg-purple-500/20", text: "text-purple-400" },
-  cutscene:  { label: "过场    ", bg: "bg-blue-500/20  ", text: "text-blue-400  " },
-  comics:    { label: "漫画    ", bg: "bg-teal-500/20  ", text: "text-teal-400  " },
-  countdown: { label: "倒计时  ", bg: "bg-yellow-500/20", text: "text-yellow-400" },
+const TAG_STYLES: Record< TrackTag, { key: TranslationKey; bg: string; text: string } > = {
+  explore:   { key: "tag.explore"  , bg: "bg-blue/10      ", text: "text-blue/60   " },
+  battle:    { key: "tag.battle"   , bg: "bg-orange-500/20", text: "text-orange-400" },
+  boss:      { key: "tag.boss"     , bg: "bg-red-500/30   ", text: "text-red-300   " },
+  mechanic:  { key: "tag.mechanic" , bg: "bg-purple-500/20", text: "text-purple-400" },
+  cutscene:  { key: "tag.cutscene" , bg: "bg-blue-500/20  ", text: "text-blue-400  " },
+  comics:    { key: "tag.comics"   , bg: "bg-teal-500/20  ", text: "text-teal-400  " },
+  countdown: { key: "tag.countdown", bg: "bg-yellow-500/20", text: "text-yellow-400" },
 };
 
 const SEGMENT_COLORS: Record<string, string> = {
@@ -42,6 +44,7 @@ function TrackList({
   actions: AudioPlayerActions;
 }) {
   const [expandedTrackId, setExpandedTrackId] = useState<string | null>(null);
+  const { t } = useLang();
 
   function toggleExpand(trackId: string) {
     setExpandedTrackId((prev) => (prev === trackId ? null : trackId));
@@ -51,10 +54,10 @@ function TrackList({
     <div className="w-full lg:w-[55%] h-full flex flex-col justify-center py-6">
       <div className="mb-4 flex items-center justify-between border-b border-white/10 pb-4">
         <h3 className="text-xl font-bold text-white tracking-wide">
-          Soundtrack List
+          {t("tracklist.title")}
         </h3>
         <span className="text-sm text-white/40">
-          {chapter.tracks.length} Tracks
+          {chapter.tracks.length} {t("tracklist.tracks")}
         </span>
       </div>
 
@@ -102,10 +105,10 @@ function TrackList({
                       <span
                         className={`text-[10px] font-medium px-1.5 py-0.5 ${tagStyle.bg} ${tagStyle.text} ${isExpanded ? "border border-current/20" : ""} rounded-sm uppercase tracking-wider`}
                       >
-                        {tagStyle.label}
+                        {t(tagStyle.key)}
                       </span>
                       <span className="text-[11px] text-white/40 font-mono">
-                        {track.sources.length} segments
+                        {track.sources.length} {t("tracklist.segments")}
                       </span>
                     </div>
                   </div>

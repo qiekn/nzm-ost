@@ -1,12 +1,16 @@
 import type { Chapter } from "../data/types";
+import { useLang } from "../i18n/context";
 
 function CoverArt({ chapter }: { chapter: Chapter }) {
+  const { lang } = useLang();
+  const displayName = lang === "en" ? chapter.nameEn : chapter.name;
+
   return (
     <div className="hidden lg:flex w-[45%] h-full items-center justify-end relative">
       <div className="relative w-80 h-80 xl:w-100 xl:h-100 rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.8)] overflow-hidden group border border-white/10">
         <img
           src={chapter.cover}
-          alt={chapter.name}
+          alt={displayName}
           className="absolute inset-0 w-full h-full object-cover opacity-80"
         />
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/40 to-transparent" />
@@ -15,7 +19,7 @@ function CoverArt({ chapter }: { chapter: Chapter }) {
           <div className="flex justify-between items-start">
             <img
               src={chapter.titleImage}
-              alt={chapter.name}
+              alt={displayName}
               className="h-6 opacity-60"
             />
             <span className="text-[10px] font-bold tracking-widest text-cyan-100 uppercase border border-cyan-400/30 bg-cyan-900/60 px-2 py-1 rounded backdrop-blur-md shadow-lg">
@@ -24,10 +28,10 @@ function CoverArt({ chapter }: { chapter: Chapter }) {
           </div>
           <div>
             <h2 className="text-4xl xl:text-5xl font-bold tracking-tighter text-white mb-2 drop-shadow-lg">
-              {chapter.name}
+              {displayName}
             </h2>
             <p className="text-lg text-cyan-200/80 font-medium drop-shadow-md">
-              {chapter.nameEn}
+              {lang === "en" ? chapter.name : chapter.nameEn}
             </p>
           </div>
         </div>

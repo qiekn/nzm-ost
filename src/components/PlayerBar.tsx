@@ -18,6 +18,8 @@ import type {
   AudioPlayerState,
   AudioPlayerActions,
 } from "../hooks/useAudioPlayer";
+import { useLang } from "../i18n/context";
+import type { TranslationKey } from "../i18n/zh";
 
 function formatTime(seconds: number): string {
   if (!isFinite(seconds) || seconds < 0) return "0:00";
@@ -38,6 +40,7 @@ function PlayerBar({
   const progressRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
+  const { t } = useLang();
 
   const progress =
     state.duration > 0 ? (state.currentTime / state.duration) * 100 : 0;
@@ -157,13 +160,13 @@ function PlayerBar({
           </div>
           <div className="truncate">
             <h4 className="text-white text-[15px] font-semibold tracking-tight truncate">
-              {state.currentTrack?.title ?? "未选择曲目"}
+              {state.currentTrack?.title ?? t("player.noTrack")}
             </h4>
             <div className="flex items-center gap-2">
               <p className="text-[13px] text-gold/80 font-medium truncate">
                 {state.segmentLabel
-                  ? `${state.segmentLabel} — 昆仑神宫 OST`
-                  : "昆仑神宫 OST"}
+                  ? `${state.segmentLabel} — ${t("player.ostLabel")}`
+                  : t("player.ostLabel")}
               </p>
               {hasTrack && (
                 <span className="text-[11px] text-white/30 font-mono shrink-0">
@@ -179,15 +182,7 @@ function PlayerBar({
           <div className="flex items-center gap-5">
             <button
               onClick={cyclePlayMode}
-              title={
-                state.playMode === "sequential"
-                  ? "播完暂停"
-                  : state.playMode === "play-once"
-                    ? "顺序播放"
-                    : state.playMode === "repeat-all"
-                      ? "列表循环"
-                      : "单曲循环"
-              }
+              title={t(`playmode.${state.playMode}` as TranslationKey)}
               className={`w-8 h-8 flex items-center justify-center rounded-full transition-all hover:bg-white/10 ${playModeActive ? "text-accent" : "text-white/40"}`}
             >
               <PlayModeIcon weight="bold" className="text-base" />

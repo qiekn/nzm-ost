@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { kunlunData } from "./data/kunlun";
 import { useAudioPlayer } from "./hooks/useAudioPlayer";
+import { LangProvider } from "./i18n/context";
 import Header from "./components/Header";
 import ChapterNav from "./components/ChapterNav";
 import CoverArt from "./components/CoverArt";
@@ -33,6 +34,7 @@ function App() {
   }
 
   return (
+    <LangProvider>
     <div className="bg-[#0a0a0a] text-gray-50 h-screen w-screen overflow-hidden flex flex-col relative">
       {/* 背景：静态图 + 视频 */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-black">
@@ -84,6 +86,7 @@ function App() {
       {/* 底部播放控制栏 */}
       <PlayerBar state={state} actions={actions} />
     </div>
+    </LangProvider>
   );
 }
 

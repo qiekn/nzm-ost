@@ -141,7 +141,7 @@ function PlayerBar({
         className="absolute top-0 left-0 w-full h-1 bg-white/10 group cursor-pointer hover:h-2 transition-all"
       >
         <div
-          className="absolute left-0 top-0 h-full bg-accent shadow-[0_0_10px_rgba(242,206,134,0.8)]"
+          className="absolute left-0 top-0 h-full bg-accent shadow-[0_0_10px_rgba(242,206,134,0.8)] transition-[width] duration-150 ease-linear"
           style={{ width: `${progress}%` }}
         >
           <div className="absolute right-0 top-1/2 -translate-y-1/2 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity translate-x-1/2" />

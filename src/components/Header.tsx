@@ -1,5 +1,8 @@
+import { GithubLogoIcon } from "@phosphor-icons/react";
 import { useLang } from "../i18n/context";
 import { asset } from "../utils/asset";
+
+const GITHUB_REPO = "https://github.com/qiekn/nzm-ost";
 
 function Header() {
   const { lang, setLang, t } = useLang();
@@ -20,12 +23,23 @@ function Header() {
           {t("header.season")}
         </span>
       </div>
-      <button
-        onClick={() => setLang(lang === "zh" ? "en" : "zh")}
-        className="shrink-0 text-xs font-medium text-white/60 hover:text-white/90 border border-white/20 hover:border-white/40 px-2.5 py-1 rounded-sm backdrop-blur-md transition-colors tracking-wide"
-      >
-        {lang === "zh" ? "EN" : "中"}
-      </button>
+      <div className="flex items-center gap-2">
+        <a
+          href={GITHUB_REPO}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-center p-2 text-white/60 hover:text-white/90 transition-colors"
+          title="GitHub"
+        >
+          <GithubLogoIcon className="h-4 w-4" />
+        </a>
+        <button
+          onClick={() => setLang(lang === "zh" ? "en" : "zh")}
+          className="shrink-0 text-xs font-medium text-white/60 hover:text-white/90 border border-white/20 hover:border-white/40 px-2.5 py-1 rounded-sm backdrop-blur-md transition-colors tracking-wide"
+        >
+          {lang === "zh" ? "EN" : "中"}
+        </button>
+      </div>
     </header>
   );
 }

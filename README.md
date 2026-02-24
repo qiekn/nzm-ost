@@ -1,16 +1,51 @@
-# React + Vite
+# nzm-ost
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+逆战：未来 游戏音乐原声带
 
-Currently, two official plugins are available:
+一次偶然，把游戏效果音调到了 30%, 背景音乐保持为 100% 。然后打了一局昆仑神宫，备受震撼。  
+伟大的《逆战未来》音频团队，给您们磕一个了，请继续保持昆仑神宫的水准 (~~我什么都会做的，不是~~)！  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 技术选型
 
-## React Compiler
+- **框架**: React 19 + TypeScript (strict mode)
+- **构建**: Vite 7 + @vitejs/plugin-react
+- **样式**: Tailwind CSS
+- **包管理**: pnpm
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 开发
 
-## Expanding the ESLint configuration
+```bash
+pnpm install          # 安装依赖
+pnpm run dev          # 启动开发服务器
+pnpm run build        # 生产构建
+pnpm run preview      # 预览生产构建
+pnpm run lint         # ESLint 检查
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🎧 关于音频资产 (Audio Assets)
+
+本仓库不提供原始的高保真音频文件下载，所有音频资源均通过解包途径获得，仅供学习交流。
+
+以下是本项目音频处理的完整路径：
+
+### 1. 资源获取：从底层到前端
+
+游戏底层使用 Audiokinetic Wwise 引擎，音频资产被封装为 `.wem` 格式。
+
+**Step 1: 解包与提取** 通过 FModel 提取出原始的 `.wem` 文件集合（例如：`A_DragonPeak_Glacier_Explore_Loop.wem`）。
+
+**Step 2: 格式转换 (vgmstream)**
+使用 vgmstream-cli 工具，将 `.wem` 文件解码为标准的无损 `.wav` 格式。
+
+```bash
+vgmstream-cli -o output.wav input.wem
+```
+
+### 2. 格式选型：为什么是 Ogg Vorbis？
+
+一切都是 `Trade Off`  —— 为了在极致音质和极小体积之间找到完美平衡，本项目最终选择了 Ogg Vorbis (q=6)，原因有下：
+
+1. **WAV 无损原生不可行**：将 WAV 文件直接部署到 Web (尤其是 GitHub Pages) 是极不明智的选择。一个 16-bit/48kHz 的 WAV 文件，3分钟大约需要 50MB，昆仑神宫一个地图的 WAV 文件就占据超过 500MB。
+2. **听觉透明 (Transparent Audio)**：Ogg q=6 对应的目标动态码率 (VBR) 约为 192 kbps。在音频编码界，这一级别的 Vorbis 被公认为达到了"听觉透明"的标准。这意味着，除非你是受过专业训练的"金耳朵"，并且使用极其昂贵的 Hi-Fi 监听设备进行反复的 A/B 盲测，否则根本无法分辨它和无损 WAV 的区别。媲美 Apple Music (AAC 256kbps) 的极佳听感。
+3. **极高压缩比**： 一首 50MB 的 WAV 原曲，经过 q=6 压缩后，体积可减至 4MB - 5MB（缩小约 90%）。
+

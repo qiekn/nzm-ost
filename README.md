@@ -53,9 +53,14 @@ vgmstream-cli -o output.wav input.wem
 
 ### 2. 格式选型：为什么是 Ogg Vorbis？
 
-一切都是 `Trade Off`  —— 为了在极致音质和极小体积之间找到完美平衡，本项目最终选择了 Ogg Vorbis (q=6)，原因有下：
+> 一切都是 `Trade Off`  —— 为了在极致音质和极小体积之间找到完美平衡，本项目最终选择了 Ogg Vorbis (q=6)
 
-1. **WAV 无损原生不可行**：将 WAV 文件直接部署到 Web (尤其是 GitHub Pages) 是极不明智的选择。一个 16-bit/48kHz 的 WAV 文件，3分钟大约需要 50MB，昆仑神宫一个地图的 WAV 文件就占据超过 500MB。
-2. **听觉透明 (Transparent Audio)**：Ogg q=6 对应的目标动态码率 (VBR) 约为 192 kbps。在音频编码界，这一级别的 Vorbis 被公认为达到了"听觉透明"的标准。这意味着，除非你是受过专业训练的"金耳朵"，并且使用极其昂贵的 Hi-Fi 监听设备进行反复的 A/B 盲测，否则根本无法分辨它和无损 WAV 的区别。媲美 Apple Music (AAC 256kbps) 的极佳听感。
-3. **极高压缩比**： 一首 50MB 的 WAV 原曲，经过 q=6 压缩后，体积可减至 4MB - 5MB（缩小约 90%）。
+- **WAV 无损原生不可行**：
+   将 WAV 文件直接部署到 Web (尤其是 GitHub Pages) 是极不明智的选择。一个 16-bit/48kHz 的 WAV 文件，3分钟大约需要 50MB，昆仑神宫一个地图的 WAV 文件就占据超过 500MB。
+   
+- **听觉透明 (Transparent Audio)**
+   Ogg q=6 对应的目标动态码率 (VBR) 约为 192 kbps。在音频编码界，这一级别的 Vorbis 被公认为达到了"听觉透明"的标准。这意味着，除非你是受过专业训练的"金耳朵"，并且使用极其昂贵的 Hi-Fi 监听设备进行反复的 A/B 盲测，否则根本无法分辨它和无损 WAV 的区别。媲美 Apple Music (AAC 256kbps) 的极佳听感。
+   
+- **极高压缩比**
+   一首 50MB 的 WAV 原曲，经过 q=6 压缩后，体积可减至 4MB - 5MB（缩小约 90%）。
 

@@ -26,6 +26,17 @@ function App() {
     setVideoReady(true);
   }, []);
 
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.code === "Space" && !["INPUT", "TEXTAREA", "BUTTON"].includes((e.target as HTMLElement).tagName)) {
+        e.preventDefault();
+        actions.togglePlay();
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [actions.togglePlay]);
+
   function handleChapterClick(index: number) {
     if (index !== activeChapterIndex) {
       actions.stop();

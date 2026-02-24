@@ -1,3 +1,6 @@
+[![GitHub Pages](https://github.com/qiekn/nzm-ost/actions/workflows/deploy.yml/badge.svg)](https://github.com/qiekn/nzm-ost/actions/workflows/deploy.yml)
+[![Built with Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code%20Opus%204.6-blueviolet?logo=anthropic)](https://claude.ai/code)
+
 # nzm-ost
 
 逆战：未来 游戏音乐原声带

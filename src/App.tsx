@@ -76,7 +76,7 @@ function App() {
       </div>
 
       {/* 顶部导航 */}
-      <div className={`transition-opacity duration-500 ${hideUI ? "opacity-0 pointer-events-none" : ""}`}>
+      <div className={`relative z-10 transition-opacity duration-500 ${hideUI ? "opacity-0 pointer-events-none" : ""}`}>
         <Header />
       </div>
 

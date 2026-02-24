@@ -35,6 +35,9 @@ jobs:
 
       - run: pnpm install
 
+      - name: Optimize images
+        run: pnpm run webp
+
       - name: Build
         run: pnpm run build
         env:

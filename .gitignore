@@ -25,3 +25,6 @@ dist-ssr
 
 # 原始音频文件（wav 太大，只提交转码后的 ogg）
 *.wav
+
+# WebP 构建产物（由 optimize-images 脚本生成）
+public/webp

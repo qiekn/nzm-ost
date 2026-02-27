@@ -1,3 +1,4 @@
+import { useCallback, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "../i18n/context";
 import { asset } from "../utils/asset";
@@ -30,6 +31,11 @@ const maps: MapCard[] = [
 
 function HomePage() {
   const { lang } = useLang();
+  const [videoReady, setVideoReady] = useState(false);
+
+  const handleVideoCanPlay = useCallback(() => {
+    setVideoReady(true);
+  }, []);
 
   return (
     <div className="bg-[#0a0a0a] text-gray-50 h-screen w-screen overflow-hidden flex flex-col relative">
@@ -38,8 +44,18 @@ function HomePage() {
         <img
           src={asset("/images/background_s0.jpg")}
           alt=""
-          className="absolute inset-0 w-full h-full object-cover opacity-40"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoReady ? "opacity-0!" : "opacity-40"}`}
         />
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          onCanPlayThrough={handleVideoCanPlay}
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${videoReady ? "opacity-40" : "opacity-0"}`}
+        >
+          <source src={asset("/videos/s1.mp4")} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-linear-to-t from-black via-black/60 to-black/30" />
       </div>
 

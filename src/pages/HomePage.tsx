@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useLang } from "../i18n/context";
 import { asset } from "../utils/asset";
@@ -32,9 +32,37 @@ const maps: MapCard[] = [
 function HomePage() {
   const { lang } = useLang();
   const [videoReady, setVideoReady] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleVideoCanPlay = useCallback(() => {
     setVideoReady(true);
+  }, []);
+
+  useEffect(() => {
+    const audio = new Audio(asset("/soundtrack/theme/20231110_NZM_GameThemeMusic_3.ogg"));
+    audio.loop = true;
+    audio.volume = 0.7;
+    audioRef.current = audio;
+
+    // 尝试自动播放，如果被阻止则等待用户交互
+    const tryPlay = () => {
+      audio.play().catch(() => {
+        const resume = () => {
+          audio.play();
+          document.removeEventListener("click", resume);
+          document.removeEventListener("keydown", resume);
+        };
+        document.addEventListener("click", resume, { once: true });
+        document.addEventListener("keydown", resume, { once: true });
+      });
+    };
+    tryPlay();
+
+    return () => {
+      audio.pause();
+      audio.src = "";
+      audioRef.current = null;
+    };
   }, []);
 
   return (

@@ -33,14 +33,22 @@ const PLAY_MODE_CYCLE: PlayMode[] = ["sequential", "play-once", "repeat-all", "r
 function PlayerBar({
   state,
   actions,
+  mapName,
+  mapNameEn,
 }: {
   state: AudioPlayerState;
   actions: AudioPlayerActions;
+  mapName?: string;
+  mapNameEn?: string;
 }) {
   const progressRef = useRef<HTMLDivElement>(null);
   const volumeRef = useRef<HTMLDivElement>(null);
   const draggingRef = useRef(false);
-  const { t } = useLang();
+  const { lang, t } = useLang();
+
+  const ostLabel = mapName
+    ? `${lang === "en" && mapNameEn ? mapNameEn : mapName} OST`
+    : t("player.ostLabel");
 
   const progress =
     state.duration > 0 ? (state.currentTime / state.duration) * 100 : 0;
@@ -165,8 +173,8 @@ function PlayerBar({
             <div className="flex items-center gap-2">
               <p className="text-[13px] text-gold/80 font-medium truncate">
                 {state.segmentLabel
-                  ? `${state.segmentLabel} — ${t("player.ostLabel")}`
-                  : t("player.ostLabel")}
+                  ? `${state.segmentLabel} — ${ostLabel}`
+                  : ostLabel}
               </p>
               {hasTrack && (
                 <span className="text-[11px] text-white/30 font-mono shrink-0">

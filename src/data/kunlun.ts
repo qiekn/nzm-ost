@@ -6,6 +6,8 @@ export const kunlunData: MapData = {
   id: "kunlun",
   name: "昆仑神宫",
   nameEn: "Kunlun Palace",
+  background: "/images/background_s0.jpg",
+  backgroundVideo: "/videos/Background_S1.mp4",
   chapters: [
     // ========== A. 龙顶冰川 ==========
     {

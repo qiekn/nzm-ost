@@ -1,10 +1,11 @@
-import { GithubLogoIcon } from "@phosphor-icons/react";
+import { GithubLogoIcon, HouseIcon } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 import { useLang } from "../i18n/context";
 import { asset } from "../utils/asset";
 
 const GITHUB_REPO = "https://github.com/qiekn/nzm-ost";
 
-function Header() {
+function Header({ mapName }: { mapName?: string }) {
   const { lang, setLang, t } = useLang();
 
   return (
@@ -22,8 +23,25 @@ function Header() {
         <span className="hidden md:inline text-gold/80 text-xs font-medium border border-gold/30 bg-gold/10 px-2 py-0.5 rounded-sm backdrop-blur-md">
           {t("header.season")}
         </span>
+        {mapName && (
+          <>
+            <div className="hidden md:block h-4 w-px bg-white/20 shrink-0" />
+            <span className="hidden md:inline text-white/60 text-sm font-medium tracking-wide shrink-0">
+              {mapName}
+            </span>
+          </>
+        )}
       </div>
       <div className="flex items-center gap-2">
+        {mapName && (
+          <Link
+            to="/"
+            className="flex items-center justify-center p-2 text-white/60 hover:text-white/90 transition-colors"
+            title={lang === "zh" ? "返回主页" : "Home"}
+          >
+            <HouseIcon className="h-4 w-4" />
+          </Link>
+        )}
         <a
           href={GITHUB_REPO}
           target="_blank"

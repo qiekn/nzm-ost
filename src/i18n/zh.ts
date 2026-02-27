@@ -12,6 +12,7 @@ export const zh = {
   "tag.cutscene": "过场",
   "tag.comics": "漫画",
   "tag.countdown": "倒计时",
+  "tag.character": "角色曲",
   "tracklist.title": "Soundtrack List",
   "tracklist.tracks": "Tracks",
   "tracklist.segments": "segments",

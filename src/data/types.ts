@@ -11,7 +11,7 @@ export interface TrackSource {
   layers?: string[]
 }
 
-export type TrackTag = "explore" | "battle" | "boss" | "mechanic" | "cutscene" | "comics" | "countdown"
+export type TrackTag = "explore" | "battle" | "boss" | "mechanic" | "cutscene" | "comics" | "countdown" | "character"
 
 export interface Track {
   id: string
@@ -39,5 +39,9 @@ export interface MapData {
   id: string
   name: string
   nameEn: string
+  /** 播放页静态背景图（可选，默认使用通用背景） */
+  background?: string
+  /** 播放页背景视频（可选，加载完成后替换背景图） */
+  backgroundVideo?: string
   chapters: Chapter[]
 }

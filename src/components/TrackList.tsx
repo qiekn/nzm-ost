@@ -17,6 +17,7 @@ const TAG_STYLES: Record< TrackTag, { key: TranslationKey; bg: string; text: str
   cutscene:  { key: "tag.cutscene" , bg: "bg-blue-500/20  ", text: "text-blue-400  " },
   comics:    { key: "tag.comics"   , bg: "bg-teal-500/20  ", text: "text-teal-400  " },
   countdown: { key: "tag.countdown", bg: "bg-yellow-500/20", text: "text-yellow-400" },
+  character: { key: "tag.character", bg: "bg-pink-500/20  ", text: "text-pink-400  " },
 };
 
 const SEGMENT_COLORS: Record<string, string> = {

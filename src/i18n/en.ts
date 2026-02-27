@@ -14,6 +14,7 @@ export const en: Record<TranslationKey, string> = {
   "tag.cutscene": "Cutscene",
   "tag.comics": "Comics",
   "tag.countdown": "Countdown",
+  "tag.character": "Character",
   "tracklist.title": "Soundtrack List",
   "tracklist.tracks": "Tracks",
   "tracklist.segments": "segments",

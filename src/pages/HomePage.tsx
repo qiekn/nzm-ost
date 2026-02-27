@@ -51,7 +51,7 @@ function HomePage() {
       {/* 地图选择 */}
       <main className="flex-1 flex flex-col items-center justify-center relative z-10 px-6">
         <h2 className="text-2xl md:text-3xl font-bold text-white/90 tracking-wide mb-2">
-          {lang === "zh" ? "选择地图" : "Select Map"}
+          {lang === "zh" ? "选择专辑" : "Select Album"}
         </h2>
         <p className="text-sm text-white/40 mb-10">
           {lang === "zh" ? "《鬼吹灯》联动赛季原声带" : "Ghost Blows Out the Light OST"}
@@ -71,19 +71,6 @@ function HomePage() {
                   alt={lang === "en" ? map.nameEn : map.name}
                   className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                 />
-              </div>
-
-              {/* 渐变遮罩 */}
-              <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/30 to-transparent" />
-
-              {/* 文字 */}
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-2xl md:text-3xl font-bold text-white tracking-tight mb-1 group-hover:text-gold transition-colors duration-300">
-                  {lang === "en" ? map.nameEn : map.name}
-                </h3>
-                <p className="text-sm text-white/50 font-medium group-hover:text-white/70 transition-colors duration-300">
-                  {lang === "en" ? map.name : map.nameEn}
-                </p>
               </div>
 
               {/* 悬停反光 */}
